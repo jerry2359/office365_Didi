@@ -146,14 +146,14 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     height: 13px;
     bottom: 16px;
     left: 289px;
-    background: url("../img/common/icon_03.png?__spriter") 0 0 no-repeat;
+    background: url("../img/common/icon/icon_03.png?__spriter") 0 0 no-repeat;
 }
 .page1 i.i2 {
     width: 47px;
     height: 37px;
     bottom: 12px;
     right: 12px;
-    background: url("../img/common/icon_04.png?__spriter") 0 0 no-repeat;
+    background: url("../img/common/icon/icon_04.png?__spriter") 0 0 no-repeat;
 }
 .page1 ul {
     display: block;
@@ -207,10 +207,10 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     left: 10px;
 }
 .page1 ul li i.tel {
-    background: url("../img/common/icon_01.png?__spriter") 0 0 no-repeat;
+    background: url("../img/common/icon/icon_01.png?__spriter") 0 0 no-repeat;
 }
 .page1 ul li i.wx {
-    background: url("../img/common/icon_02.png?__spriter") 0 0 no-repeat;
+    background: url("../img/common/icon/icon_02.png?__spriter") 0 0 no-repeat;
 }
 
 /*li的四种状态*/
@@ -325,6 +325,14 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     position: absolute;
     bottom: 90px;
 }
+.page2 .reject i, .page2 .answer i {
+    display: block;
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 .page2 .reject p, .page2 .answer p {
     display: block;
     width: 100%;
@@ -335,11 +343,15 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 .page2 .reject {
     left: 105px;
-    background: url("../img/common/icon_05.png?__spriter") 0 0 no-repeat;
+}
+.page2 .reject i {
+    background: url("../img/common/icon/icon_05.png?__spriter") 0 0 no-repeat;
 }
 .page2 .answer {
     right: 105px;
-    background: url("../img/common/icon_06.png?__spriter") 0 0 no-repeat;
+}
+.page2 .answer i {
+    background: url("../img/common/icon/icon_06.png?__spriter") 0 0 no-repeat;
 }
 
 
@@ -367,7 +379,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     left: 256px;
     width: 125px;
     height: 125px;
-    background: url("../img/common/icon_05.png?__spriter") 0 0 no-repeat;
+    background: url("../img/common/icon/icon_05.png?__spriter") 0 0 no-repeat;
 }
 
 

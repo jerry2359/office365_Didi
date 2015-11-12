@@ -12,9 +12,7 @@
         //选取body 延迟加载
         $('body').lazyLoading()
             .concat([
-                '../img/common/bg.jpg', '../img/common/icon_01.png', '../img/common/icon_02.png',
-                '../img/common/icon_03.png', '../img/common/icon_04.png', '../img/common/icon_05.png',
-                '../img/common/icon_06.png',
+                '../img/common/bg.jpg',
                 '../img/page1/lockall.png',
                 '../img/page4/pic_01.png', '../img/page4/pic_04.png'
             ])
