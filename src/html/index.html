@@ -9,11 +9,18 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
+<!--loading start-->
+<div class="loading">
+    <img src="../img/common/loading.gif" alt=""/>
+    <p>0%</p>
+</div>
+<!--loading end-->
+
 <!--页面主体 start-->
 <div id="wrap">
 
     <!--第1页 开始-->
-    <div class="page page1 active">
+    <div class="page page1">
         <img class="time" src="../img/page1/pic_01.png" alt=""/>
         <ul>
             <li>
@@ -67,13 +74,27 @@
     <div class="page page4">
         <img class="icons" src="../img/page4/pic_02.png" alt=""/>
         <img class="icons_bot" src="../img/page4/pic_03.png" alt=""/>
-        <div class="OneDrive"><img src="../img/page4/pic_05.png" alt=""/></div>
+        <div class="OneDrive">
+            <img src="../img/page4/pic_05.png" alt=""/>
+        </div>
 
-        <div class="layer_OneDrive">
+        <div class="layer_OneDrive animated delay500 duration2000 fadeIn">
             <article><a href="javascript:;"></a></article>
+        </div>
+
+        <div class="OneDriveLight">
+            <img src="../img/page4/pic_04.png" alt=""/>
+            <img class="OneDriveIcon" src="../img/page4/pic_05.png" alt=""/>
         </div>
     </div>
     <!--第4页 结束-->
+
+    <!--第5页 开始-->
+    <div class="page page5">
+        <video id="videoApp" src="../media/app.mp4" width="640" x-webkit-airplay="true" webkit-playsinline="true"></video>
+        <img class="frame1" src="../img/page5/video_frame1.jpg" alt=""/>
+    </div>
+    <!--第5页 结束-->
 
 </div>
 <!--页面主体 end-->

@@ -18,27 +18,24 @@
             isProgress = false,
             loadListenTimer = null;
 
-        loadImages({
-            '$imgs': $imgArr,
-            'progressFn': function(percent) {
-                aLoadData.push(percent);
-            }
-        });
+        $this.concat = function( arr ) {
+            var collection = [];
 
-        loadListenTimer = setInterval(function() {
-            if ( loadListenI > 35 ) {
-                //未检测到缓存资源，加长延迟加载时间
-                loadSpeed = 150;
-                !isProgress && progressPercent();
-            }
-            loadListenI ++;
-            if ( aLoadData[aLoadData.length-1] >= 100 ) {
-                //检测到缓存资源，正常延迟加载
-                clearInterval(loadListenTimer);
-                loadSpeed = 30;
-                !isProgress && progressPercent();
-            }
-        }, 50);
+            arr.forEach(function(item) {
+                var img = new Image();
+                img.src = item;
+                collection.push(img);
+            });
+
+            loadImages({
+                '$imgs': $($imgArr.concat(collection)),
+                'progressFn': function(percent) {
+                    aLoadData.push(percent);
+                }
+            });
+
+            return $this;
+        };
 
         $this.progress = function( fn ) {
             $this.on('progress', function(ev) {
@@ -55,6 +52,21 @@
 
             return $this;
         };
+
+        loadListenTimer = setInterval(function() {
+            if ( loadListenI > 35 ) {
+                //未检测到缓存资源，加长延迟加载时间
+                loadSpeed = 150;
+                !isProgress && progressPercent();
+            }
+            loadListenI ++;
+            if ( aLoadData[aLoadData.length-1] >= 100 ) {
+                //检测到缓存资源，正常延迟加载
+                clearInterval(loadListenTimer);
+                loadSpeed = 30;
+                !isProgress && progressPercent();
+            }
+        }, 50);
 
         function progressPercent() {
             isProgress = true;
