@@ -452,3 +452,287 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     /*margin: -553.5px 0 0 -320px;*/
     /*-webkit-transform: scale(0.999);*/
 }
+.page5 .layer_success {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+}
+.page5 .layer_success.active {
+    display: block;
+}
+.page5 .layer_success article {
+    width: 459px;
+    height: 245px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -206px 0 0 -229px;
+    background: url("../img/page5/pic_01.png") center no-repeat;
+}
+.page5 .layer_success article a {
+    display: block;
+    width: 100%;
+    height: 77px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+
+/*第6页*/
+.page6 {
+    background: #062136;
+}
+.page6 .customer {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 50px;
+}
+.page6 .customer span {
+    display: block;
+    margin-top: 10px;
+}
+.page6 .customer i {
+    position: relative;
+    top: -5px;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-color: #e81123;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.page6 .main {
+    width: 100%;
+    height: 564px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -282px;
+}
+.page6 .main .videoarea {
+    position: relative;
+    height: 366px;
+    background: url("../img/page6/pic_01.jpg") center no-repeat;
+}
+.page6 .main .videoarea .twohour {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+}
+.page6 .main .videoarea .twohour p {
+    width: 100%;
+    position: absolute;
+    top: 200px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+.page6 .main .avatar {
+    width: 100%;
+    height: 175px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.page6 .main .avatar ul {
+    display: block;
+    height: 100%;
+    float: right;
+    overflow: hidden;
+}
+.page6 .main .avatar ul li {
+    position: relative;
+    display: block;
+    width: 142px;
+    height: 100%;
+    float: left;
+    margin-right: 20px;
+}
+.page6 .main .avatar ul li img {
+    display: block;
+    margin: 0 auto;
+    position: static;
+}
+.page6 .main .avatar ul li p {
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}
+
+.page6 footer {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    height: 135px;
+    background: url("../img/page6/pic_04.jpg") center no-repeat;
+}
+
+.page6 .layer_getprize {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: rgba(0,0,0,0.9);
+    display: none;
+}
+.page6 .layer_getprize.active {
+    display: block;
+}
+.page6 .layer_getprize img {
+    top: 60px;
+    left: 30px;
+}
+.page6 .layer_getprize a {
+    display: block;
+    width: 198px;
+    height: 71px;
+    position: absolute;
+    top: 605px;
+    left: 222px;
+    background: url("../img/common/icon/icon_07.png?__spriter") 0 0 no-repeat;
+}
+
+.points{
+    display: block;
+    width:130px;
+    height:30px;
+    position: absolute;
+    top: 150px;
+    left: 258px;
+    background:url(../img/page6/points.png)  no-repeat;
+}
+.point20{height:30px;width:130px;background-position:0 0;}
+.point21{height:30px;width:130px;background-position:0 -30px;}
+.point22{height:30px;width:130px;background-position:0 -60px;}
+.point19{height:30px;width:130px;background-position:0 -90px;}
+.point16{height:30px;width:130px;background-position:0 -120px;}
+.point17{height:30px;width:130px;background-position:0 -150px;}
+.point18{height:30px;width:130px;background-position:0 -180px;}
+.point27{height:30px;width:130px;background-position:0 -210px;}
+.point28{height:30px;width:130px;background-position:0 -240px;}
+.point29{height:30px;width:130px;background-position:0 -270px;}
+.point26{height:30px;width:130px;background-position:0 -300px;}
+.point23{height:30px;width:130px;background-position:0 -330px;}
+.point24{height:30px;width:130px;background-position:0 -360px;}
+.point25{height:30px;width:130px;background-position:0 -390px;}
+.point15{height:30px;width:130px;background-position:0 -420px;}
+.point5{height:30px;width:130px;background-position:0 -450px;}
+.point6{height:30px;width:130px;background-position:0 -480px;}
+.point7{height:30px;width:130px;background-position:0 -510px;}
+.point4{height:30px;width:130px;background-position:0 -540px;}
+.point1{height:30px;width:130px;background-position:0 -570px;}
+.point2{height:30px;width:130px;background-position:0 -600px;}
+.point3{height:30px;width:130px;background-position:0 -630px;}
+.point12{height:30px;width:130px;background-position:0 -660px;}
+.point13{height:30px;width:130px;background-position:0 -690px;}
+.point14{height:30px;width:130px;background-position:0 -720px;}
+.point11{height:30px;width:130px;background-position:0 -750px;}
+.point8{height:30px;width:130px;background-position:0 -780px;}
+.point9{height:30px;width:130px;background-position:0 -810px;}
+.point10{height:30px;width:130px;background-position:0 -840px;}
+
+
+/*第7页*/
+.page7 {
+    background: url("../img/page7/bg.jpg") top center no-repeat;
+    background-color: #fce4ca;
+}
+.page7 img.tit1 {
+    top: 35px;
+    left: 40px;
+}
+.page7 img.tit2 {
+    top: 40px;
+    left: 20px;
+}
+.page7 img.tit3 {
+    bottom: 0;
+    left: 20px;
+}
+.page7 form {
+    display: block;
+    width: 575px;
+    position: absolute;
+    top: 405px;
+    left: 55px;
+    z-index: 2;
+    color: #000;
+}
+.page7 form p {
+    margin-top: 25px;
+}
+.page7 form p:nth-of-type(1) {
+    margin-top: 0;
+}
+.page7 form p input {
+    width: 158px;
+    height: 50px;
+    padding: 0 10px;
+    border: none;
+    background: #fff;
+    font-size: 28px;
+    color: #f14300;
+    margin: 0 25px 0 18px;
+}
+.page7 form p input:nth-of-type(2) {
+    margin-right: 0;
+}
+.page7 form p input[type="button"] {
+    width: 198px;
+    height: 71px;
+    margin: 20px 0 0 160px;
+    background: url("../img/common/icon/icon_07.png?__spriter") 0 0 no-repeat;
+}
+
+.page7 .layer_share {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background: rgba(0,0,0,0.9);
+    display: none;
+}
+.page7 .layer_share.active {
+    display: block;
+}
+.page7 .layer_share img {
+    position: absolute;
+    top: 35px;
+    right: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

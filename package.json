@@ -1,0 +1,14 @@
+{
+  "name": "office365_Didi",
+  "version": "1.0.0",
+  "description": "微软office365 didi项目",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jerry",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  }
+}

@@ -511,6 +511,24 @@ CssSprite.prototype.stop = function() {
  */
 ;(function( $ ) {
 
+    //共同方法
+    $.extend($.fn, {
+        'fadeIn': function( settings ) {
+            var _this = $(this);
+            settings && settings.addClass && _this.addClass(settings.addClass);
+            _this.css('opacity', '0').animate({'opacity':1}, settings && settings.time || 500, '', function() {
+                settings && settings.callBack && settings.callBack.call(_this);
+            });
+        },
+        'fadeOut': function( settings ) {
+            var _this = $(this);
+            _this.css('opacity', '1').animate({'opacity':0}, settings && settings.time || 500, '', function() {
+                settings.removeClass && _this.removeClass(settings.removeClass);
+                settings && settings.callBack && settings.callBack.call(_this);
+            });
+        }
+    });
+
     //loading加载
     (function() {
 
@@ -529,7 +547,7 @@ CssSprite.prototype.stop = function() {
             })
             .callBack(function() {
                 oBox.hide();
-                page1Module.start();
+                //page1Module.start();
             });
 
     })();
@@ -704,6 +722,7 @@ CssSprite.prototype.stop = function() {
 
         var oBox = $('.page5'),
             oVideoApp = $('#videoApp').get(0),
+            oLayerSuccess = oBox.find('.layer_success'),
             firstFrame = oBox.find('.frame1');
 
         var handleVideo = function() {
@@ -715,7 +734,7 @@ CssSprite.prototype.stop = function() {
         }, false);
 
         oVideoApp.addEventListener('ended', function() {
-            alert('app演示播放完毕');
+            oLayerSuccess.fadeIn({'addClass':'active'});
         }, false);
 
         return {
@@ -724,6 +743,26 @@ CssSprite.prototype.stop = function() {
                 handleVideo();
             }
         }
+
+    })();
+
+
+    //第6页
+    (function() {
+
+        var oBox = $('.page6'),
+            oPoints = oBox.find('.points');
+
+        var pointFrames = new CssSprite({
+            'stage'         : oPoints.get(0),
+            'commonClass'   : 'points',
+            'classPrefix'   : 'point',
+            'frames'        : 29,
+            'time'          : 1000,
+            'waitTime'      : 500,
+            'loop'          : 1
+        });
+        pointFrames.play();
 
     })();
 
