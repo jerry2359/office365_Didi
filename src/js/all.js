@@ -547,7 +547,7 @@ CssSprite.prototype.stop = function() {
             })
             .callBack(function() {
                 oBox.hide();
-                //page1Module.start();
+                page1Module.start();
             });
 
     })();
@@ -557,7 +557,8 @@ CssSprite.prototype.stop = function() {
 
         var mail = new Audio('../media/mail.mp3'),
             ring = new Audio('../media/ring.mp3'),
-            boss = new Audio('../media/boss.mp3');
+            boss = new Audio('../media/boss.mp3'),
+            customer = Audio('../media/customer.mp3');
 
         mail.preload = 'auto';
         ring.preload = 'auto';
@@ -587,6 +588,16 @@ CssSprite.prototype.stop = function() {
             },
             'bossEnded': function( callBack ) {
                 boss.addEventListener('ended', function() {
+                    callBack && callBack();
+                }, false);
+                return this;
+            },
+            'playCustomer': function() {
+                customer.play();
+                return this;
+            },
+            'customerEnded': function( callBack ) {
+                customer.addEventListener('ended', function() {
                     callBack && callBack();
                 }, false);
                 return this;
@@ -721,16 +732,48 @@ CssSprite.prototype.stop = function() {
     var page5Module = (function() {
 
         var oBox = $('.page5'),
+            excel = oBox.find('.excel'),
+            excelFrame1 = excel.find('.frame1'),
+            skype = oBox.find('.skype'),
+            skypeFrame1 = skype.find('.frame1'),
+            skypeHotArea = skype.find('.hotarea'),
+            offer = oBox.find('.offer'),
+            offerHotArea = offer.find('.hotarea'),
             oVideoApp = $('#videoApp').get(0),
+            oVideoSkype = $('#videoSkype').get(0),
             oLayerSuccess = oBox.find('.layer_success'),
-            firstFrame = oBox.find('.frame1');
+            oSuccessA = oLayerSuccess.find('a');
 
         var handleVideo = function() {
             oVideoApp.play();
         };
 
+        offerHotArea.on('click', function() {
+            offer.hide();
+            handleVideo();
+        });
+
+        //点击成功逃过一劫
+        oSuccessA.on('click', function() {
+            oLayerSuccess.fadeOut({'removeClass':'active', 'callBack': function() {
+                excel.hide();
+            }});
+            skype.show();
+            oVideoSkype.play();
+        });
+
+        //点击skype按钮进入下一页
+        skypeHotArea.on('click', function() {
+            oVideoSkype.pause();
+            page6Module.show();
+        });
+
         oVideoApp.addEventListener('canplaythrough', function() {
-            firstFrame.hide();
+            excelFrame1.hide();
+        }, false);
+
+        oVideoSkype.addEventListener('canplaythrough', function() {
+            skypeFrame1.hide();
         }, false);
 
         oVideoApp.addEventListener('ended', function() {
@@ -740,7 +783,6 @@ CssSprite.prototype.stop = function() {
         return {
             'show': function() {
                 oBox.addClass('active');
-                handleVideo();
             }
         }
 
@@ -748,10 +790,11 @@ CssSprite.prototype.stop = function() {
 
 
     //第6页
-    (function() {
+    var page6Module = (function() {
 
         var oBox = $('.page6'),
-            oPoints = oBox.find('.points');
+            oTwoHour = oBox.find('.twohour'),
+            oPoints = oTwoHour.find('.points');
 
         var pointFrames = new CssSprite({
             'stage'         : oPoints.get(0),
@@ -762,7 +805,32 @@ CssSprite.prototype.stop = function() {
             'waitTime'      : 500,
             'loop'          : 1
         });
-        pointFrames.play();
+
+        function showTwoHour() {
+            oTwoHour.fadeIn({'addClass':'active'});
+            pointFrames.play();
+        }
+
+        return {
+            'show': function() {
+                oBox.addClass('active');
+                setTimeout(showTwoHour, 2000);
+            }
+        }
+
+    })();
+
+
+    //第7页
+    var page7Module = (function() {
+
+        var oBox = $('.page7');
+
+        return {
+            'show': function() {
+                oBox.addClass('active');
+            }
+        }
 
     })();
 

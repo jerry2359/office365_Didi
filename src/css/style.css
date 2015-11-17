@@ -452,6 +452,40 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     /*margin: -553.5px 0 0 -320px;*/
     /*-webkit-transform: scale(0.999);*/
 }
+.page5 img.nav {
+    bottom: 0;
+    left: 0;
+}
+.page5 .skype {
+    display: none;
+}
+.page5 .skype .hotarea {
+    display: block;
+    width: 100%;
+    height: 250px;
+    position: absolute;
+    top: 670px;
+    left: 0;
+}
+.page5 .offer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.page5 .offer img.bg, .page5 .offer img.mask {
+    top: 0;
+    left: 0;
+}
+.page5 .offer .hotarea {
+    display: block;
+    width: 100%;
+    height: 170px;
+    position: absolute;
+    top: 374px;
+    left: 0;
+}
 .page5 .layer_success {
     width: 100%;
     height: 100%;
@@ -529,6 +563,10 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     top: 0;
     left: 0;
     background: rgba(0,0,0,0.8);
+    display: none;
+}
+.page6 .main .videoarea .twohour.active {
+    display: block;
 }
 .page6 .main .videoarea .twohour p {
     width: 100%;
