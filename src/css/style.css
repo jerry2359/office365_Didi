@@ -725,7 +725,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     padding: 0 10px;
     border: none;
     background: #fff;
-    font-size: 28px;
+    font-size: 24px;
     color: #f14300;
     margin: 0 25px 0 18px;
 }
@@ -756,6 +756,11 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     position: absolute;
     top: 35px;
     right: 0;
+}
+
+/*第8页*/
+.page8 {
+    z-index: 10;
 }
 
 

@@ -548,6 +548,7 @@ CssSprite.prototype.stop = function() {
             .callBack(function() {
                 oBox.hide();
                 page1Module.start();
+                //page7Module.show();
             });
 
     })();
@@ -558,12 +559,13 @@ CssSprite.prototype.stop = function() {
         var mail = new Audio('../media/mail.mp3'),
             ring = new Audio('../media/ring.mp3'),
             boss = new Audio('../media/boss.mp3'),
-            customer = Audio('../media/customer.mp3');
+            customer = new Audio('../media/customer.mp3');
 
         mail.preload = 'auto';
         ring.preload = 'auto';
         ring.loop = 'loop';
         boss.preload = 'auto';
+        customer.preload = 'auto';
 
         /*mail.addEventListener('canplaythrough', function() {
             alert('canplaythrough');
@@ -765,6 +767,7 @@ CssSprite.prototype.stop = function() {
         //点击skype按钮进入下一页
         skypeHotArea.on('click', function() {
             oVideoSkype.pause();
+            oBox.removeClass('active');
             page6Module.show();
         });
 
@@ -794,7 +797,12 @@ CssSprite.prototype.stop = function() {
 
         var oBox = $('.page6'),
             oTwoHour = oBox.find('.twohour'),
-            oPoints = oTwoHour.find('.points');
+            oPoints = oTwoHour.find('.points'),
+            oLayerPrize = oBox.find('.layer_getprize'),
+            oPrizeBtn = oLayerPrize.find('a'),
+            oTime = oBox.find('.customer span'),
+            timeStart, hours = '',
+            timer = null;
 
         var pointFrames = new CssSprite({
             'stage'         : oPoints.get(0),
@@ -806,15 +814,53 @@ CssSprite.prototype.stop = function() {
             'loop'          : 1
         });
 
+
+        //点击领奖去
+        oPrizeBtn.on('click', function() {
+            oBox.fadeOut({'removeClass':'active', 'callBack':function() {
+                oLayerPrize.removeClass('active');
+            }});
+            page7Module.show();
+        });
+
         function showTwoHour() {
             oTwoHour.fadeIn({'addClass':'active'});
             pointFrames.play();
         }
 
+        //设置时间
+        function showTime() {
+            timeStart = Date.now();
+            timer = setInterval(function(){
+                var times = Date.now() - timeStart,
+                    date = new Date(times),
+                    minutes = date.getMinutes(),
+                    seconds = date.getSeconds();
+
+                minutes = minutes > 9 ? minutes : '0'+minutes;
+                minutes = minutes > 59 ? '00' : minutes;
+                seconds = seconds > 9 ? seconds : '0'+seconds;
+
+                oTime.text(hours + minutes + ' : ' + seconds);
+            }, 700);
+        }
+
         return {
             'show': function() {
                 oBox.addClass('active');
-                setTimeout(showTwoHour, 2000);
+                showTime();
+                setTimeout(function() {
+                    audioModule.playCustomer().customerEnded(function() {
+                        clearInterval(timer);
+                        pointFrames.stop();
+                        oTwoHour.removeClass('active');
+                        oLayerPrize.fadeIn({'addClass':'active'});
+                    });
+                }, 1000);
+                setTimeout(function() {
+                    hours = '2 : ';
+                    showTwoHour();
+                }, 5000);
             }
         }
 
@@ -824,11 +870,64 @@ CssSprite.prototype.stop = function() {
     //第7页
     var page7Module = (function() {
 
-        var oBox = $('.page7');
+        var oBox = $('.page7'),
+            aInput = oBox.find('form input'),
+            oLayerShare = oBox.find('.layer_share');
+
+        //点击领赏 提交表单
+        aInput.eq(6).on('click', function() {
+
+            //验证姓名不能为空
+            if ( aInput.eq(0).val().length <= 0 ) {
+                alert('请填写姓名');
+                return;
+            }
+
+            //省份不能为空
+            if ( aInput.eq(1).val().length <= 0 ) {
+                alert('请填写所在省份');
+                return;
+            }
+
+            //手机号码格式验证
+            if ( !/^[1][3,4,5,7,8]\d{9}$/.test(aInput.eq(2).val()) ) {
+                alert('手机号码格式不正确');
+                return;
+            }
+
+            //城市不能为空
+            if ( aInput.eq(3).val().length <= 0 ) {
+                alert('请填写所在城市');
+                return;
+            }
+
+            //地址不能为空
+            if ( aInput.eq(5).val().length <= 0 ) {
+                alert('请填写地址');
+                return;
+            }
+
+            oLayerShare.fadeIn({'addClass':'active'});
+
+        });
 
         return {
             'show': function() {
                 oBox.addClass('active');
+            }
+        }
+
+    })();
+
+
+    //第8页
+    $.page8Module = (function() {
+
+        var oBox = $('.page8');
+
+        return {
+            'show': function() {
+                oBox.fadeIn({'addClass':'active'});
             }
         }
 
