@@ -40,10 +40,11 @@
             .callBack(function() {
                 oBox.hide();
                 page1Module.start();
-                //page7Module.show();
+                //page6Module.show();
             });
 
     })();
+
 
     //音频播放
     var audioModule = (function() {
@@ -176,13 +177,34 @@
     //第3页
     var page3Module = (function() {
 
-        var oBox = $('.page3');
+        var oBox = $('.page3'),
+            oTime = oBox.find('.boss span'),
+            timer = null,
+            minutes = 0, seconds = 0;
+
+        function showTime() {
+            timer = setInterval(function() {
+                var iM = 0, iS = 0;
+                seconds ++;
+                if ( seconds <= 59 ) {
+                    iS = seconds <= 9 ? '0'+seconds : seconds;
+                } else {
+                    iS = '00';
+                    seconds = 0;
+                    minutes ++;
+                }
+                iM = minutes <= 9 ? '0'+minutes : minutes;
+                oTime.text(iM +' : '+ iS);
+            }, 950);
+        }
 
         return {
             'show': function() {
+                showTime();
                 oBox.addClass('active');
                 audioModule.pauseRing().playBoss().bossEnded(function() {
                     //alert('boss讲话完毕，大伙鼓掌！');
+                    clearInterval(timer);
                     oBox.removeClass('active');
                     page4Module.show();
                 });
@@ -202,14 +224,16 @@
         //点击弹窗的 oneDrive
         oLayerCon.find('a').on('click', function() {
             oLayerCon.animate({'opacity':0}, 200);
-            setTimeout(function() {
+            oneDriveLight.addClass('active');
+            /*setTimeout(function() {
                 oneDriveLight.css('opacity', '0').animate({'opacity':1}, 1000);
-            }, 800);
+            }, 800);*/
         });
 
         //点击OneDrive，打开app效果
         oneDriveLight.find('.OneDriveIcon').on('click', function() {
             oBox.removeClass('active');
+            oneDriveLight.removeClass('active');
             page5Module.show();
         });
 
@@ -232,6 +256,7 @@
             skypeFrame1 = skype.find('.frame1'),
             skypeHotArea = skype.find('.hotarea'),
             offer = oBox.find('.offer'),
+            offerMask = offer.find('.mask'),
             offerHotArea = offer.find('.hotarea'),
             oVideoApp = $('#videoApp').get(0),
             oVideoSkype = $('#videoSkype').get(0),
@@ -278,6 +303,9 @@
         return {
             'show': function() {
                 oBox.addClass('active');
+                setTimeout(function() {
+                    offerMask.fadeIn({'addClass':'active', 'time':2000});
+                }, 2000);
             }
         }
 
@@ -293,8 +321,7 @@
             oLayerPrize = oBox.find('.layer_getprize'),
             oPrizeBtn = oLayerPrize.find('a'),
             oTime = oBox.find('.customer span'),
-            timeStart, hours = '',
-            timer = null;
+            hours = 0, minutes = 0, seconds = 0;
 
         var pointFrames = new CssSprite({
             'stage'         : oPoints.get(0),
@@ -321,38 +348,80 @@
         }
 
         //设置时间
-        function showTime() {
-            timeStart = Date.now();
-            timer = setInterval(function(){
-                var times = Date.now() - timeStart,
-                    date = new Date(times),
-                    minutes = date.getMinutes(),
-                    seconds = date.getSeconds();
+        var normalTimer = null;
+        function normalTime() {
+            var iH = '00', iM = '00', iS = '00';
 
-                minutes = minutes > 9 ? minutes : '0'+minutes;
-                minutes = minutes > 59 ? '00' : minutes;
-                seconds = seconds > 9 ? seconds : '0'+seconds;
+            clearInterval(fastTimerS);
+            clearInterval(fastTimerM);
 
-                oTime.text(hours + minutes + ' : ' + seconds);
-            }, 700);
+            seconds ++;
+            iS = seconds <= 9 ? '0'+seconds : seconds;
+            iM = minutes <= 9 ? '0'+minutes : minutes;
+            iH = hours <= 9 ? '0'+hours : hours;
+            if ( seconds > 59 ) {
+                iS = '00';
+                seconds = 0;
+                minutes ++;
+                if ( minutes > 59 ) {
+                    iM = '00';
+                    minutes = 0;
+                    hours ++;
+                    iH = hours <= 9 ? '0'+hours : hours;
+                }
+            }
+            oTime.text(hours > 0 ? iH+' : '+iM+' : '+iS : iM+' : '+iS);
+
+            normalTimer = setTimeout(normalTime, 950);
+        }
+
+        var fastTimerS = null, fastTimerM = null;
+        function fastTime() {
+            var iH = '00', iM = '00', iS = '00';
+
+            clearTimeout(normalTimer);
+
+            fastTimerS = setInterval(function() {
+                seconds ++;
+                iS = seconds <= 9 ? '0'+seconds : seconds;
+                if ( seconds > 59 ) {
+                    seconds = 0;
+                }
+                oTime.text(hours > 0 ? iH+' : '+iM+' : '+iS : iM+' : '+iS);
+            }, 5);
+
+            fastTimerM = setInterval(function() {
+                minutes ++;
+                iM = minutes <= 9 ? '0'+minutes : minutes;
+                if ( minutes > 59 ) {
+                    minutes = 0;
+                    hours ++;
+                    iH = hours <= 9 ? '0'+hours : hours;
+                }
+            }, 37);
         }
 
         return {
             'show': function() {
                 oBox.addClass('active');
-                showTime();
+                normalTime();
                 setTimeout(function() {
                     audioModule.playCustomer().customerEnded(function() {
-                        clearInterval(timer);
+                        clearTimeout(normalTimer);
                         pointFrames.stop();
                         oTwoHour.removeClass('active');
                         oLayerPrize.fadeIn({'addClass':'active'});
                     });
+                    setTimeout(function() {
+                        //语速加快
+                        fastTime();
+                        showTwoHour();
+                    }, 4000);
+                    setTimeout(function() {
+                        //回复正常语速
+                        normalTime();
+                    }, 10000);
                 }, 1000);
-                setTimeout(function() {
-                    hours = '2 : ';
-                    showTwoHour();
-                }, 5000);
             }
         }
 
@@ -363,43 +432,69 @@
     var page7Module = (function() {
 
         var oBox = $('.page7'),
-            aInput = oBox.find('form input'),
+            oForm = oBox.find('form'),
+            aInput = oForm.find('input'),
+            oProvince = oForm.find('select').eq(0),
+            oCity = oForm.find('select').eq(1),
             oLayerShare = oBox.find('.layer_share');
 
         //点击领赏 提交表单
-        aInput.eq(6).on('click', function() {
+        aInput.eq(4).on('click', function() {
+            var name = aInput.eq(0).val(),
+                company = aInput.eq(2).val(),
+                province = oProvince.val(),
+                city = oCity.val(),
+                address = aInput.eq(3).val(),
+                tel = aInput.eq(1).val();
 
             //验证姓名不能为空
-            if ( aInput.eq(0).val().length <= 0 ) {
+            if ( name.length <= 0 ) {
                 alert('请填写姓名');
                 return;
             }
 
             //省份不能为空
-            if ( aInput.eq(1).val().length <= 0 ) {
-                alert('请填写所在省份');
+            if ( province == '请选择' ) {
+                alert('请选择省份');
                 return;
             }
 
             //手机号码格式验证
-            if ( !/^[1][3,4,5,7,8]\d{9}$/.test(aInput.eq(2).val()) ) {
+            if ( !/^[1][3,4,5,7,8]\d{9}$/.test(tel) ) {
                 alert('手机号码格式不正确');
                 return;
             }
 
             //城市不能为空
-            if ( aInput.eq(3).val().length <= 0 ) {
-                alert('请填写所在城市');
+            if ( city == '请选择' ) {
+                alert('请选择城市');
                 return;
             }
 
             //地址不能为空
-            if ( aInput.eq(5).val().length <= 0 ) {
+            if ( address.length <= 0 ) {
                 alert('请填写地址');
                 return;
             }
 
-            oLayerShare.fadeIn({'addClass':'active'});
+            requestServerDidi.subForm({
+                'name': name,
+                'company': company,
+                'province': province,
+                'city': city,
+                'address': address,
+                'tel': tel
+            }, function(msg) {
+                if ( msg.status ) {
+                    oBox.fadeOut({'removeClass':'active'});
+                    page8Module.show();
+                    console.log(msg.data);
+                } else {
+                    alert(msg.error);
+                }
+            });
+
+            //oLayerShare.fadeIn({'addClass':'active'});
 
         });
 
@@ -413,13 +508,14 @@
 
 
     //第8页
-    $.page8Module = (function() {
+    var page8Module = (function() {
 
-        var oBox = $('.page8');
+        //var oBox = $('.page8');
 
         return {
             'show': function() {
-                oBox.fadeIn({'addClass':'active'});
+                //oBox.fadeIn({'addClass':'active'});
+                window.location.href = 'didi.html';
             }
         }
 

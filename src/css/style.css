@@ -403,6 +403,9 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 .page4 .OneDriveLight {
     opacity: 0;
 }
+.page4 .OneDriveLight.active {
+    opacity: 1;
+}
 .page4 .OneDrive img, .page4 .OneDriveLight img {
     top: 30px;
     left: 45px;
@@ -457,6 +460,9 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     left: 0;
 }
 .page5 .skype {
+    width: 100%;
+    height: 100%;
+    background-color: #0166c0;
     display: none;
 }
 .page5 .skype .hotarea {
@@ -477,6 +483,12 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 .page5 .offer img.bg, .page5 .offer img.mask {
     top: 0;
     left: 0;
+}
+.page5 .offer img.mask {
+    display: none;
+}
+.page5 .offer img.mask.active {
+    display: block;
 }
 .page5 .offer .hotarea {
     display: block;
@@ -634,7 +646,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     display: block;
 }
 .page6 .layer_getprize img {
-    top: 60px;
+    top: 25px;
     left: 30px;
 }
 .page6 .layer_getprize a {
@@ -714,20 +726,31 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     color: #000;
 }
 .page7 form p {
+    display: block;
     margin-top: 25px;
+    position: relative;
 }
 .page7 form p:nth-of-type(1) {
     margin-top: 0;
 }
-.page7 form p input {
+.page7 form p input, .page7 form p select, .page7 form p span {
     width: 158px;
     height: 50px;
-    padding: 0 10px;
+    margin: 0 25px 0 18px;
     border: none;
     background: #fff;
-    font-size: 24px;
+}
+.page7 form p select {
+    width: 178px;
+    position: absolute;
+    top: 0;
+    right: 30px;
+    opacity: 0;
+}
+.page7 form p input {
+    padding: 0 10px;
     color: #f14300;
-    margin: 0 25px 0 18px;
+    font-size: 24px;
 }
 .page7 form p input:nth-of-type(2) {
     margin-right: 0;
@@ -737,6 +760,12 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     height: 71px;
     margin: 20px 0 0 160px;
     background: url("../img/common/icon/icon_07.png?__spriter") 0 0 no-repeat;
+}
+.page7 form p span {
+    display: inline-block;
+    padding: 0 10px;
+    line-height: 50px;
+    font-size: 20px;
 }
 
 .page7 .layer_share {

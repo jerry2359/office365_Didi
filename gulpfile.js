@@ -97,14 +97,19 @@ gulp.task('concatCss', ['cleanSprite'], function() {
 
 //合并多个js并压缩成all.js文件
 gulp.task('concatJs', function() {
-    return gulp.src(['src/js/webscale.js', 'src/js/zepto.min.js', 'src/js/lazyloading.js', 'src/js/touch.js', 'src/js/fx.js', 'src/js/cssSprite.js', 'src/js/index.js'])
+    return gulp.src([
+        'src/js/webscale.js', 'src/js/zepto.min.js', 'src/js/lazyloading.js',
+        'src/js/touch.js', 'src/js/fx.js', 'src/js/cssSprite.js',
+        'src/js/selectdata.js', 'src/js/provincecity.js', 'src/js/server.js',
+        'src/js/index.js'
+    ])
             .pipe(plumber()) //plumber给pipe打补丁防止watch因报错而终止监听
             .pipe(concat('all.js'))
             .pipe(minify()) //此处会生成两个文件，分别是压缩版和未压缩版
             .pipe(gulp.dest('src/js'));
 });
 
-gulp.task('copyJs', function() {
+gulp.task('copyJs', ['concatJs'], function() {
     return gulp.src('src/js/all-min.js')
             .pipe(plumber()) //plumber给pipe打补丁防止watch因报错而终止监听
             .pipe(gulp.dest('dist/js'));
@@ -130,7 +135,7 @@ gulp.task('copyMedia', function () {
 });
 
 //定义默认任务
-gulp.task('default', ['concatCss', 'concatJs', 'revAppendHtml', 'copyJs', 'copyImages', 'copyMedia']);
+gulp.task('default', ['concatCss', 'copyJs', 'revAppendHtml', 'copyImages', 'copyMedia']);
 
 //自动监听任务
 gulp.task('watchCss', function () {

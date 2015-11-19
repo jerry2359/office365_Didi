@@ -36,7 +36,7 @@
             </li>
             <li>
                 <span>微信<u>现在</u></span>
-                <em>老板：有急事，报价要改</em>
+                <em>媳妇：亲爱的,你到哪了？我在餐厅了,等你噢！</em>
                 <bdo>滑动来查看</bdo>
                 <i class="wx"></i>
             </li>
@@ -63,7 +63,7 @@
 
     <!--第3页 开始-->
     <div class="page page3">
-        <div class="boss">老板<span>00 : 30</span></div>
+        <div class="boss">老板<span>00 : 00</span></div>
         <img class="icons" src="../img/page3/pic_01.png?rev=@@hash" alt=""/>
         <div class="reject"></div>
     </div>
@@ -82,7 +82,7 @@
         </div>
 
         <div class="OneDriveLight">
-            <img src="../img/page4/pic_04.png?rev=@@hash" alt=""/>
+            <img class="animated delay800 fadeIn alternate infinite" src="../img/page4/pic_04.png?rev=@@hash" alt=""/>
             <img class="OneDriveIcon" src="../img/page4/pic_05.png?rev=@@hash" alt=""/>
         </div>
     </div>
@@ -140,8 +140,8 @@
         <img class="tit1" src="../img/page7/pic_01.png?rev=@@hash" alt=""/>
         <img class="tit2" src="../img/page7/pic_02.png?rev=@@hash" alt=""/>
         <form>
-            <p>姓名<input type="text">省份<input type="text"></p>
-            <p>电话<input type="tel" maxlength="11">城市<input type="text"></p>
+            <p>姓名<input type="text">省份<select id="province"><option value="请选择">请选择</option></select><span id="provinceName">请选择</span></p>
+            <p>电话<input type="tel" maxlength="11">城市<select id="city"><option value="请选择">请选择</option></select><span id="cityName">请选择</span></p>
             <p>公司<input type="text">地址<input type="text"></p>
             <p><input type="button"></p>
         </form>
@@ -153,9 +153,9 @@
     <!--第7页 结束-->
 
     <!--第8页 开始-->
-    <div class="page page8">
+    <!--<div class="page page8">
         <iframe width="100%" height="100%" scrolling="yes" frameborder="0" src="http://gsactivity.diditaxi.com.cn/gulfstream/activity/v2/giftpackage/index?g_channel=da127304f21087a3075ac1d7a7720bd2"></iframe>
-    </div>
+    </div>-->
     <!--第8页 结束-->
 
 </div>
@@ -163,5 +163,8 @@
 
 <!--js footer-->
 <script src="../js/all-min.js?rev=@@hash"></script>
+<script src="../js/jweixin-1.0.0.js?rev=@@hash"></script>
+<script src="../js/my_lab.js?rev=@@hash"></script>
+<script src="../js/weixin.js?rev=@@hash"></script>
 </body>
 </html>
